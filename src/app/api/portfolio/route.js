@@ -1,5 +1,4 @@
 // app/api/performance/route.js
-import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -22,12 +21,19 @@ export async function GET() {
       profit_pct: history.profit_loss_pct?.[i] ?? null,
     }));
 
-    return Response.json({ data });
+    return new Response(JSON.stringify({ data }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
     console.error("Error fetching portfolio history:", error);
-    return Response.json(
-      { error: error.message || "Failed to fetch portfolio history" },
-      { status: 500 }
+
+    return new Response(
+      JSON.stringify({ error: error.message || "Failed to fetch portfolio history" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
     );
   }
 }
