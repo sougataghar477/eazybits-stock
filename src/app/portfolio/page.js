@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Orders from "@/components/Orders";
 import PortfolioChart from "@/components/PortfolioChart";
 
