@@ -6,11 +6,10 @@ export default async function Portfolio() {
   try {
     const res = await fetch(
       process.env.NEXT_PUBLIC_HOST + "/api/portfolio",
-      { cache: "no-store" } // optional, to always fetch fresh data
+      { cache: "no-store" } // <- forces dynamic fetch
     );
     const json = await res.json();
     data = json.data;
-    console.log(data);
   } catch (error) {
     console.error("Failed to fetch portfolio:", error);
   }
