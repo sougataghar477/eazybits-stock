@@ -22,10 +22,10 @@ export async function GET() {
       profit_pct: history.profit_loss_pct?.[i] ?? null,
     }));
 
-    return NextResponse.json({ data });
+    return Response.json({ data });
   } catch (error) {
     console.error("Error fetching portfolio history:", error);
-    return NextResponse.json(
+    return Response.json(
       { error: error.message || "Failed to fetch portfolio history" },
       { status: 500 }
     );
