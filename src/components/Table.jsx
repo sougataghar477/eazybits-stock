@@ -28,14 +28,15 @@ export default function Table({ idx, order, setModalOpen, setIndex }) {
   //   If marketPrice < avg price → Loss
   //   If equal → Break even (0)
   //   Otherwise → "N/A"
-  const profitOrLoss =
-    (marketPrice && order.filled_avg_price && marketPrice > order.filled_avg_price)
-      ? Math.round((marketPrice - order.filled_avg_price) * order.qty) + " (Profit)"
-      : (marketPrice && order.filled_avg_price && marketPrice < order.filled_avg_price)
-      ? Math.round((order.filled_avg_price - marketPrice) * order.qty) + " (Loss)"
-      : marketPrice === order.filled_avg_price
-      ? 0
-      : "N/A";
+const profitOrLoss = 
+  (marketPrice != null && order.filled_avg_price != null)
+    ? marketPrice > order.filled_avg_price
+      ? `${Math.round((marketPrice - order.filled_avg_price) * order.qty)} (Profit)`
+      : marketPrice < order.filled_avg_price
+      ? `${Math.round((order.filled_avg_price - marketPrice) * order.qty)} (Loss)`
+      : "0 (No Change)"
+    : "N/A";
+
 
  
 
